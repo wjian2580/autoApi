@@ -8,10 +8,10 @@ from public import log
 
 class Request(object):
 	def __init__(self,api_name):
-		self.api_name = api_name
-		self.url = cpm.get('env', 'host') + ':' + cpm.get('env', 'http_port') + cp_api.get(api_name,'api')
-		self.method = cp_api.get(api_name, 'method')
-		self.data = cp_api.get(api_name, 'data')
+		self.api_name = self.api_name
+		self.url = cpm.get('env', 'host') + ':' + cpm.get('env', 'http_port') + cp_api.get(self.api_name,'api')
+		self.method = cp_api.get(self.api_name, 'method')
+		self.data = cp_api.get(self.api_name, 'data')
 	
 	def req(self):
 		logs = log.Log()
