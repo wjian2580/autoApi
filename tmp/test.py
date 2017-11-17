@@ -1,11 +1,30 @@
 #!/usr/bin/python
 # coding=utf-8
-import requests
-from config import base_url
+import sys
+sys.path.append('C:\\Users\\wang\\Desktop\\autoapi')
+import requests,unittest
+from apiss.api import ApiInvoke
 
-json = {"sessionid": "Z"}
+class TestApi(unittest.TestCase):
+	@classmethod
+	def setUpClass(cls):
+		cls.username = 'admin'
+		cls.password = '123456'
+		cls.api = ApiInvoke()
+	def test_login(self):
+		res = self.api.login(self.username,self.password)
+		assert res['code'] == '200'
+		assert res['msg'] == 'success'
+	def test_info(self):
+		cookie = self.api.get_cookies(self.username, self.password)
+		cookies = {
+			'session': cookie
+		}
+		print (cookies)
+		res = self.api.info(cookies=cookies)
+		assert res['code'] == '200'
+		assert res['msg'] == 'success'
+		assert res['data'] == 'info'
 
-params = {"req_funType":"L295","req_sinceId":"0","req_count":"1"}
-r = requests.request('post','http://111.13.63.2:9800/api/trade/ptjy/ptyw/cxxtzt',json = json)
-print(r.text)
-print(str(r.elapsed.microseconds // 1000) + 'ms')
+if __name__ == '__main__':
+	unittest.main()

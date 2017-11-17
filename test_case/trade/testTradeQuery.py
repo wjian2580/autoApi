@@ -2,11 +2,11 @@
 # coding=utf-8
 
 import unittest
-from public.setup import req
+from public.setup import Request
 class TestTradeQuery(unittest.TestCase):
 		
 	def test_trade_query(self):
-		r = req('交易查询')
+		r = Request('交易查询').req()
 		self.assertEqual(r.status_code, 200)
 
 
