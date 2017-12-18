@@ -12,6 +12,8 @@ class Request(object):
 		self.url = cpm.get('env', 'host') + ':' + cpm.get('env', 'http_port') + cp_api.get(self.api_name,'api')
 		self.method = cp_api.get(self.api_name, 'method')
 		self.data = cp_api.get(self.api_name, 'data')
+		self.arg = cp_api.get(self.api_name, 'arg')
+		self.value = cp_api.get(self.api_name, 'value')
 	
 	def req(self):
 		logs = log.Log()
